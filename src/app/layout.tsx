@@ -1,0 +1,33 @@
+import MainHeader from "../components/layout/main-header";
+import "./globals.css";
+import { LayoutProps } from "../types";
+import localFont from "next/font/local";
+import MainFooter from "../components/layout/main-footer";
+
+const Satoshi = localFont({
+  src: [
+    { path: "../../public/font/Satoshi-Bold.otf", weight: "700" },
+    { path: "../../public/font/Satoshi-Medium.otf", weight: "500" },
+    { path: "../../public/font/Satoshi-Regular.otf", weight: "400" },
+  ],
+  variable: "--font-satoshi",
+});
+const Integral = localFont({
+  src: "../../public/font/Fontspring-DEMO-integralcf-bold.otf",
+  variable: "--font-integral",
+});
+export const metadata = {
+  title: "SHOP.CO",
+  description: "Your one-stop fashion destination",
+};
+export default function RootLayout({ children }: LayoutProps) {
+  return (
+    <html lang="en">
+      <body className={`${Satoshi.variable} ${Integral.variable}`}>
+        <MainHeader />
+        {children}
+        <MainFooter />
+      </body>
+    </html>
+  );
+}
