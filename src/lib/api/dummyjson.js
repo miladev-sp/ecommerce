@@ -44,3 +44,11 @@ export async function loginUser(username, password) {
   const user = await result.json();
   return user;
 }
+
+export async function sortProducts(sort, limit) {
+  const result = await fetch(
+    BASE_URL + `/products?limit=${limit}&sortBy=${sort}`,
+  );
+  const products = await result.json();
+  return products;
+}

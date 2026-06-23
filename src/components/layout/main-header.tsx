@@ -71,13 +71,13 @@ export default function MainHeader() {
             />
           </div>
           <Link href={"/"} className=" md:hidden">
-            <Image src={search} alt="search" width={24} height={24} />
+            <Image src={search} alt="search" width={24} height={24} priority />
           </Link>
           <Link href={"/"}>
-            <Image src={cart} alt="cart" width={24} height={24} />
+            <Image src={cart} alt="cart" width={24} height={24} priority />
           </Link>
           <Link href={"/"}>
-            <Image src={user} alt="user" width={24} height={24} />
+            <Image src={user} alt="user" width={24} height={24} priority />
           </Link>
         </div>
       </div>

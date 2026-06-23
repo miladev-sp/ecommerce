@@ -8,3 +8,20 @@
   --font-satoshi: var(--font-satoshi);
   --font-integral: var(--font-integral);
 }
+
+.container {
+  margin: 0 80px;
+}
+
+.container-padding {
+  padding: 0 80px;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
