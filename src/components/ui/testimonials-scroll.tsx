@@ -83,17 +83,19 @@ export default function TestimonialsClient({
                 </div>
 
                 <div className="flex gap-1 items-center">
-                  <h3 className="font-satoshi font-bold text-[16px]">
+                  <h3 className="font-satoshi font-bold text-[16px] lg:text-[20px]">
                     {review.reviewerName}
                   </h3>
                   <Image src={green} alt="verified" />
                 </div>
 
-                <p className="font-satoshi text-[14px] text-[#00000099]">
+                <p className="font-satoshi text-[14px] lg:text-[16px] text-[#00000099]">
                   {review.comment}
                 </p>
 
-                <p className="text-xs text-gray-400">{product.description}</p>
+                <p className="text-xs text-gray-400 text-[14px] lg:text-[16px]">
+                  {product.description}
+                </p>
               </div>
             )),
         )}
