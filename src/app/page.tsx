@@ -4,6 +4,7 @@ import NewArrivals from "../components/shared/new-arrivals";
 import StyleCategories from "../components/shared/style-categories";
 import Testimonials from "../components/shared/testimonials";
 import TopSelling from "../components/shared/top-selling";
+export const revalidate = 3600;
 export default function Home() {
   return (
     <main>
