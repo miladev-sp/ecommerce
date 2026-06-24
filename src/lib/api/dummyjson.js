@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
+const BASE_URL = "https://dummyjson.com";
 
 export async function getProducts(limit = 20) {
   const result = await fetch(BASE_URL + `/products?limit=${limit}`, {
