@@ -17,23 +17,21 @@ export default async function ProductDetailPage({ params }: Props) {
 
   const product = await getProductById(id);
   return (
-    <Suspense fallback={<h2>Loading...</h2>}>
-      <div className="mx-6 md:mx-8 xl:mx-20">
-        <BreadCrumb product={product} />
-        <div className="md:flex md:gap-6 xl:gap-8">
-          <div className="flex-1 ">
-            <ImageGallery product={product} />
-          </div>
-          <div className="flex-2 xl:flex-1 lg:flex lg:flex-col lg:justify-between">
-            <ProductInfo product={product} />
-            <ColorSelector />
-            <SizeSelector />
-            <QuantitySelector />
-          </div>
+    <div className="mx-6 md:mx-8 xl:mx-20">
+      <BreadCrumb product={product} />
+      <div className="md:flex md:gap-6 xl:gap-8">
+        <div className="flex-1 ">
+          <ImageGallery product={product} />
         </div>
-        <ProductTabs product={product} />
-        <SimilarProducts product={product} />
+        <div className="flex-2 xl:flex-1 lg:flex lg:flex-col lg:justify-between">
+          <ProductInfo product={product} />
+          <ColorSelector />
+          <SizeSelector />
+          <QuantitySelector />
+        </div>
       </div>
-    </Suspense>
+      <ProductTabs product={product} />
+      <SimilarProducts product={product} />
+    </div>
   );
 }
