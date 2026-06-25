@@ -21,7 +21,7 @@ export default function MainHeader() {
     <header>
       <MobileNav isOpen={isMenuOpen} onClose={openMenuHandler} />
       <div className="flex bg-black text-white h-8 justify-center items-center relative  ">
-        <p className="font-satoshi font-normal text-[12px] ">
+        <p className="font-satoshi font-normal text-[12px] lg:text-[14px] ">
           Sign up and get 20% off to your first order.
           <Link href={"/"} className=" underline ml-0.5">
             Sign Up Now

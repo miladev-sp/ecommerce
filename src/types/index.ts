@@ -13,5 +13,15 @@ export type Product = {
     rating: number;
     comment: string;
     reviewerName: string;
+    date: string;
   }[];
+  category: string;
+  images: string[];
+  brand: string;
+  weight: number;
+  dimensions: {
+    width: number;
+    height: number;
+    depth: number;
+  };
 };

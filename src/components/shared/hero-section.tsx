@@ -16,7 +16,10 @@ export default function HeroSection() {
             designed to bring out your individuality and cater to your sense of
             style.
           </p>
-          <button className="bg-black font-satoshi font-medium w-full mt-3 rounded-[62px] text-white px-13.5 py-4 xl:w-1/2  xl:mt-6 cursor-pointer">
+          <button
+            className="bg-black font-satoshi font-medium w-full mt-3 rounded-[62px] text-white px-13.5 py-4 xl:w-1/2  xl:mt-6 cursor-pointer"
+            type="button"
+          >
             <Link href={"/products"}>Shop Now</Link>
           </button>
         </div>

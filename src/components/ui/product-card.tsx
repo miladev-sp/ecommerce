@@ -1,22 +1,31 @@
 import { Product } from "@/src/types";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
+import Image from "next/image";
+import {
+  calculateDiscountAmount,
+  calculateDiscountedPrice,
+} from "@/src/lib/utils";
 type Props = {
   product: Product;
 };
 export default function ProductCard({ product }: Props) {
-  const discountAmount = Math.round(
-    (product.discountPercentage / 100) * product.price,
+  const discountAmount = calculateDiscountAmount(
+    product.price,
+    product.discountPercentage,
   );
 
-  const discountedPrice = Math.round(product.price - discountAmount);
+  const discountedPrice = calculateDiscountedPrice(
+    product.price,
+    product.discountPercentage,
+  );
   const roundDiscountPercentage = Math.round(product.discountPercentage);
 
   return (
     <Link href={`/products/${product.id}`}>
       <div className="flex flex-col h-full gap-1">
         <div className="bg-[#F0EEED] p-3 rounded-[13px] ">
-          <img src={product.thumbnail} alt="" />
+          <Image src={product.thumbnail} alt="" width={295} height={295} />
         </div>
         <p className="mt-2.5 font-satoshi font-bold text-[16px] line-clamp-2 min-h-12 lg:text-[20px] ">
           {product.title}

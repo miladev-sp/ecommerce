@@ -9,7 +9,7 @@ export default function TopSelling() {
           top selling
         </h2>
       </div>
-      <ProductListSorted />
+      <ProductListSorted limit={4} query="stock" />
       <div className="text-center mt-12 mb-10">
         <Link
           href={"/products"}

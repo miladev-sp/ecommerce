@@ -51,7 +51,7 @@ export default function TestimonialsClient({
 
       <div
         ref={scrollRef}
-        className="flex gap-5 overflow-x-auto hide-scrollbar mt-15"
+        className="flex gap-5 overflow-x-auto hide-scrollbar mt-15 "
       >
         {products?.map((product, i) =>
           product?.reviews
