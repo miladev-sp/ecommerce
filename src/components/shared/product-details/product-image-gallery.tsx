@@ -21,17 +21,17 @@ export default function ImageGallery({ product }: Prop) {
           height={290}
         />
       </div>
-      <div className="flex gap-3 overflow-x-auto hide-scrollbar mt-4 sm:flex-col sm:justify-between md:flex-row xl:flex-col  xl:flex-1">
+      <div className="flex gap-3 overflow-x-auto hide-scrollbar mt-4 sm:flex-col sm:justify-between md:flex-row xl:flex-col  xl:flex-1 w-full">
         {product.images.map((image, index) => (
           <div
-            className={`bg-[#F0EEED] rounded-[20px] relative w-28 h-26.5   ${selectedImage === image ? "border border-[#000000]" : ""} shrink-0 xl:w-38 xl:h-41.75  `}
+            className={`bg-[#F0EEED] rounded-[20px] relative   ${selectedImage === image ? "border border-[#000000]" : ""}  w-28 h-26.5 shrink-0  xl:w-38 xl:h-41.75 `}
             key={image}
           >
             <Image
               src={image}
               alt=""
               fill
-              onClick={() => setSelectedImage(product.images[index])}
+              onClick={() => setSelectedImage(image)}
               className="object-contain"
             />
           </div>

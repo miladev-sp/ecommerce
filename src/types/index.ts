@@ -19,7 +19,7 @@ export type Product = {
   images: string[];
   brand: string;
   weight: number;
-  dimensions: {
+  dimensions?: {
     width: number;
     height: number;
     depth: number;

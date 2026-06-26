@@ -7,7 +7,6 @@ import SizeSelector from "@/src/components/shared/product-details/size-selector"
 import QuantitySelector from "@/src/components/shared/product-details/quantity-selector";
 import ProductTabs from "@/src/components/shared/product-details/products-tabs";
 import SimilarProducts from "@/src/components/shared/product-details/similar-products";
-import { Suspense } from "react";
 type Props = {
   params: Promise<{ id: string }>;
 };

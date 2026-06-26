@@ -125,7 +125,7 @@ export default function ProductTabs({ product }: Prop) {
                     );
                   })}
                   <div className="absolute right-0 top-0 hidden lg:block cursor-pointer">
-                    <Image src={dot} alt="" />
+                    <Image src={dot} alt="" width={20} height={20} />
                   </div>
                 </div>
 
@@ -178,27 +178,29 @@ export default function ProductTabs({ product }: Prop) {
         <div className="flex flex-col gap-6">
           <p className="text-sm md:text-base">{product.description}</p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <strong>Brand:</strong> {product.brand}
-            </div>
+          {product.dimensions && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <strong>Brand:</strong> {product.brand}
+              </div>
 
-            <div>
-              <strong>Weight:</strong> {product.weight}
-            </div>
+              <div>
+                <strong>Weight:</strong> {product.weight}
+              </div>
 
-            <div>
-              <strong>Width:</strong> {product.dimensions.width}
-            </div>
+              <div>
+                <strong>Width:</strong> {product.dimensions.width}
+              </div>
 
-            <div>
-              <strong>Height:</strong> {product.dimensions.height}
-            </div>
+              <div>
+                <strong>Height:</strong> {product.dimensions.height}
+              </div>
 
-            <div>
-              <strong>Depth:</strong> {product.dimensions.depth}
+              <div>
+                <strong>Depth:</strong> {product.dimensions.depth}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
 
