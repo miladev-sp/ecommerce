@@ -55,3 +55,7 @@
     background-position: left;
   }
 }
+
+body {
+  position: relative;
+}

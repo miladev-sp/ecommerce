@@ -15,7 +15,7 @@ export default function ProductTabs({ product }: Prop) {
   const [selectedTab, setSelectedTab] = useState("reviews");
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-15">
       <div className="mt-5 mb-5 border-b border-[#0000001A]">
         <div className="flex overflow-x-auto hide-scrollbar min-w-max md:min-w-0 md:justify-between gap-6">
           <button

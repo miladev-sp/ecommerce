@@ -9,11 +9,19 @@ import user from "@/public/user.png";
 import Image from "next/image";
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { usePathname } from "next/navigation";
 import { RxCross2 } from "react-icons/rx";
+import { useCart } from "@/src/context/CartContext";
 export default function MainHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const currentPath = usePathname();
+  const { cartItems } = useCart();
+  function calcOrder() {
+    let orderCount = 0;
+    for (let i = 0; i < cartItems.length; i++) {
+      orderCount = cartItems[i].quantity + orderCount;
+    }
+    return orderCount;
+  }
+  const orderCount = calcOrder();
   function openMenuHandler() {
     setIsMenuOpen((prev) => !prev);
   }
@@ -73,9 +81,14 @@ export default function MainHeader() {
           <Link href={"/"} className=" md:hidden">
             <Image src={search} alt="search" width={24} height={24} priority />
           </Link>
-          <Link href={"/"}>
-            <Image src={cart} alt="cart" width={24} height={24} priority />
-          </Link>
+          <div className="relative">
+            <Link href={"/"}>
+              <Image src={cart} alt="cart" width={24} height={24} priority />
+              <div className=" absolute top-4 left-4 bg-[#F0F0F0] rounded-[62px] p-1 py-0 flex items-center justify-center font-satoshi">
+                <span>{orderCount}</span>
+              </div>
+            </Link>
+          </div>
           <Link href={"/"}>
             <Image src={user} alt="user" width={24} height={24} priority />
           </Link>

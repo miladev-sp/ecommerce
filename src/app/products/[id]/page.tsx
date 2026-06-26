@@ -2,11 +2,9 @@ import { getProductById } from "@/src/lib/api/dummyjson";
 import BreadCrumb from "@/src/components/shared/product-details/breadcrumb";
 import ImageGallery from "@/src/components/shared/product-details/product-image-gallery";
 import ProductInfo from "@/src/components/shared/product-details/product-info";
-import ColorSelector from "@/src/components/shared/product-details/color-selector";
-import SizeSelector from "@/src/components/shared/product-details/size-selector";
-import QuantitySelector from "@/src/components/shared/product-details/quantity-selector";
 import ProductTabs from "@/src/components/shared/product-details/products-tabs";
 import SimilarProducts from "@/src/components/shared/product-details/similar-products";
+import DetailsSelector from "@/src/components/shared/product-details/product-details-selector";
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -24,9 +22,7 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
         <div className="flex-2 xl:flex-1 lg:flex lg:flex-col lg:justify-between">
           <ProductInfo product={product} />
-          <ColorSelector />
-          <SizeSelector />
-          <QuantitySelector />
+          <DetailsSelector product={product} />
         </div>
       </div>
       <ProductTabs product={product} />

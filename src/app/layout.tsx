@@ -3,6 +3,8 @@ import "./globals.css";
 import { LayoutProps } from "../types";
 import localFont from "next/font/local";
 import MainFooter from "../components/layout/main-footer";
+import { CartProvider } from "../context/CartContext";
+import { Toaster } from "react-hot-toast";
 
 const Satoshi = localFont({
   src: [
@@ -24,9 +26,12 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={`${Satoshi.variable} ${Integral.variable}`}>
-        <MainHeader />
-        {children}
-        <MainFooter />
+        <CartProvider>
+          <MainHeader />
+          {children}
+          <MainFooter />
+        </CartProvider>
+        <Toaster position="bottom-right" />;
       </body>
     </html>
   );
