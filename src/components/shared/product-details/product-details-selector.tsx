@@ -18,7 +18,12 @@ export default function DetailsSelector({ product }: Props) {
   const [qty, setQty] = useState(1);
   const [pendingCart, setPendingCart] = useState(false);
   const { addToCart, cartItems, updateQuantity, removeFromCart } = useCart();
-  const productQty = cartItems.filter((i) => i.id === product.id)[0]?.quantity;
+  const productQty = cartItems.filter(
+    (i) =>
+      i.id === product.id &&
+      i.color === selectedColor &&
+      i.size === selectedSize,
+  )[0]?.quantity;
   function addtoCartHandler() {
     const item = {
       id: product.id,
@@ -49,7 +54,7 @@ export default function DetailsSelector({ product }: Props) {
   function addQuantityHandler() {
     setPendingCart(true);
     setTimeout(() => {
-      updateQuantity(product.id, productQty + 1);
+      updateQuantity(product.id, productQty + 1, selectedSize, selectedColor);
       toast.success(`Quantity of ${product.title} in your cart updated!`);
       setPendingCart(false);
     }, 2000);
@@ -57,7 +62,7 @@ export default function DetailsSelector({ product }: Props) {
   function decraseQuantityHandler() {
     setPendingCart(true);
     setTimeout(() => {
-      updateQuantity(product.id, productQty - 1);
+      updateQuantity(product.id, productQty - 1, selectedSize, selectedColor);
       toast.success(`Quantity of ${product.title} in your cart updated!`);
       setPendingCart(false);
     }, 2000);
@@ -65,7 +70,7 @@ export default function DetailsSelector({ product }: Props) {
   function deleteProductHandler() {
     setPendingCart(true);
     setTimeout(() => {
-      removeFromCart(product.id);
+      removeFromCart(product.id, selectedColor, selectedSize);
       toast.success(`${product.title} removed from your cart!`);
       setPendingCart(false);
     }, 2000);
