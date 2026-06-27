@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps) {
           {children}
           <MainFooter />
         </CartProvider>
-        <Toaster position="bottom-right" />;
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );

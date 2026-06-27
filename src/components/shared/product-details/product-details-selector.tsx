@@ -1,6 +1,6 @@
 "use client";
 import { PRODUCT_COLORS } from "@/src/constants";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { PRODUCT_SIZES } from "@/src/constants";
 import { FaPlus } from "react-icons/fa6";
@@ -33,7 +33,7 @@ export default function DetailsSelector({ product }: Props) {
       quantity: qty,
       size: selectedSize,
       color: selectedColor,
-      discountPercenrage: product.discountPercentage,
+      discountPercentage: product.discountPercentage,
     };
 
     const existingItem = cartItems.find(
@@ -49,7 +49,7 @@ export default function DetailsSelector({ product }: Props) {
         toast.success(`The ${product.title} Added to your cart!`);
       }
       setPendingCart(false);
-    }, 2000);
+    }, 1000);
   }
   function addQuantityHandler() {
     setPendingCart(true);
@@ -57,7 +57,7 @@ export default function DetailsSelector({ product }: Props) {
       updateQuantity(product.id, productQty + 1, selectedSize, selectedColor);
       toast.success(`Quantity of ${product.title} in your cart updated!`);
       setPendingCart(false);
-    }, 2000);
+    }, 1000);
   }
   function decraseQuantityHandler() {
     setPendingCart(true);
@@ -65,7 +65,7 @@ export default function DetailsSelector({ product }: Props) {
       updateQuantity(product.id, productQty - 1, selectedSize, selectedColor);
       toast.success(`Quantity of ${product.title} in your cart updated!`);
       setPendingCart(false);
-    }, 2000);
+    }, 1000);
   }
   function deleteProductHandler() {
     setPendingCart(true);
@@ -73,7 +73,7 @@ export default function DetailsSelector({ product }: Props) {
       removeFromCart(product.id, selectedColor, selectedSize);
       toast.success(`${product.title} removed from your cart!`);
       setPendingCart(false);
-    }, 2000);
+    }, 1000);
   }
   return (
     <div>

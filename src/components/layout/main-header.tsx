@@ -14,14 +14,7 @@ import { useCart } from "@/src/context/CartContext";
 export default function MainHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { cartItems } = useCart();
-  function calcOrder() {
-    let orderCount = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      orderCount = cartItems[i].quantity + orderCount;
-    }
-    return orderCount;
-  }
-  const orderCount = calcOrder();
+  const orderCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   function openMenuHandler() {
     setIsMenuOpen((prev) => !prev);
   }
@@ -82,11 +75,13 @@ export default function MainHeader() {
             <Image src={search} alt="search" width={24} height={24} priority />
           </Link>
           <div className="relative">
-            <Link href={"/"}>
+            <Link href={"/cart"}>
               <Image src={cart} alt="cart" width={24} height={24} priority />
-              <div className=" absolute top-4 left-4 bg-[#F0F0F0] rounded-[62px] p-1 py-0 flex items-center justify-center font-satoshi">
-                <span>{orderCount}</span>
-              </div>
+              {orderCount > 0 && (
+                <div className=" absolute top-4 left-4 bg-[#F0F0F0] rounded-[62px] p-1 py-0 flex items-center justify-center font-satoshi">
+                  <span>{orderCount}</span>
+                </div>
+              )}
             </Link>
           </div>
           <Link href={"/"}>

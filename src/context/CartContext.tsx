@@ -9,7 +9,7 @@ type CartItem = {
   quantity: number;
   size: string;
   color: string;
-  discountPercenrage: number;
+  discountPercentage: number;
 };
 
 type CartContextType = {
