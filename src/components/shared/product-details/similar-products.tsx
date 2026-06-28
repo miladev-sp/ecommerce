@@ -1,15 +1,12 @@
 import { Product } from "@/src/types";
-import { sortProducts } from "@/src/lib/api/dummyjson";
+import { getProductsByCategory, sortProducts } from "@/src/lib/api/dummyjson";
 import ProductCard from "../../ui/product-card";
 type Props = {
-  product: Product;
+  category: string;
 };
 
-export default async function SimilarProducts({ product }: Props) {
-  const data = await sortProducts(product.category, 4);
-  const similarProducts = data.products.filter(
-    (item: Product) => item.id !== product.id,
-  );
+export default async function SimilarProducts({ category }: Props) {
+  const data = await getProductsByCategory(category, 4);
   return (
     <div className="my-18">
       <h2 className="font-integral text-[36px] text-center mb-8">
@@ -17,7 +14,7 @@ export default async function SimilarProducts({ product }: Props) {
       </h2>
 
       <div className="flex gap-5  mt-15 overflow-x-auto  items-stretch xl:justify-center hide-scrollbar">
-        {similarProducts.map((product: Product) => (
+        {data.products.map((product: Product) => (
           <div
             className=" w-[clamp(11rem,25vw,20rem)] shrink-0"
             key={product.id}

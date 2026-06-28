@@ -56,16 +56,20 @@ export default function ProductCard({ product }: Props) {
             </span>
           </span>
         </div>
-        <div className="mt-1.5 flex gap-2.5 items-center">
+        <div className="mt-1.5 flex gap-1 items-center">
           <p className="font-satoshi font-bold text-[20px] lg:text-[24px]">
             {discountAmount ? `$${discountedPrice}` : product.price}
           </p>
           <p className="line-through text-[#00000066] font-satoshi font-bold lg:text-[24px]">
             {discountAmount ? `$${product.price}` : ""}
           </p>
-          <p className="py-1.5 px-3.5 bg-[#FF33331A] text-[10px] font-satoshi font-medium rounded-[62px] text-[#FF3333] lg:text-[12px] lg:px-4 lg:py-1.5">
-            {discountAmount ? `-${roundDiscountPercentage}%` : ""}
-          </p>
+          {discountAmount ? (
+            <p className="py-1.5 px-3.5 bg-[#FF33331A] text-[10px] font-satoshi font-medium rounded-[62px] text-[#FF3333] lg:text-[12px] lg:px-4 lg:py-1.5">
+              {discountAmount ? `-${roundDiscountPercentage}%` : ""}
+            </p>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </Link>

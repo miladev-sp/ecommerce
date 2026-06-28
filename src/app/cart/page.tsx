@@ -1,9 +1,13 @@
+"use client";
 import CartItem from "@/src/components/shared/cart-item";
 import CartSummary from "@/src/components/shared/cart-summary";
+import { useAuth } from "@/src/context/AuthContext";
 import Link from "next/link";
 import { FaAngleRight } from "react-icons/fa";
 
 export default function CartPage() {
+  const { user, isAuthLoaded } = useAuth();
+  if (!isAuthLoaded) return null;
   return (
     <div className="mx-6 md:mx-8 xl:mx-20">
       <div className="lg:ml-7">
@@ -26,10 +30,19 @@ export default function CartPage() {
       </div>
       <h2 className="font-integral text-[32px] lg:text-[40px]">Your cart</h2>
       <div className="flex flex-col items-center md:mb-20 ">
-        <div className="sm:w-2/3 md:flex md:w-full md:gap-3 lg:gap-5 ">
-          <CartItem />
-          <CartSummary />
-        </div>
+        {user ? (
+          <div className="sm:w-2/3 md:flex md:w-full md:gap-3 lg:gap-5 ">
+            <CartItem />
+            <CartSummary />
+          </div>
+        ) : (
+          <h2>
+            For seeing your cart you should first Login{" "}
+            <Link href={"/login"} className="font-bold underline">
+              Login
+            </Link>
+          </h2>
+        )}
       </div>
     </div>
   );

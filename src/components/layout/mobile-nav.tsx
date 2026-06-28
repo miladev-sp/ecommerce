@@ -20,7 +20,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           onClick={(e) => e.stopPropagation()}
         >
           <IoMdClose className=" self-end mt-6" size={24} onClick={onClose} />
-          <ul className=" flex flex-col gap-2 ">
+          <ul className=" flex flex-col gap-2 font-satoshi ">
             <li>
               <Link href={"/"}>Shop</Link>
             </li>

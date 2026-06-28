@@ -25,3 +25,10 @@ export type Product = {
     depth: number;
   };
 };
+
+export type ProductsResponse = {
+  products: Product[];
+  total: number;
+  skip: number;
+  limit: number;
+};

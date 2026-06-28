@@ -7,6 +7,7 @@ import { MdDelete } from "react-icons/md";
 
 export default function CartItem() {
   const { cartItems, updateQuantity, removeFromCart } = useCart();
+
   function addQuantityHandler(
     id: number,
     quantity: number,
@@ -135,7 +136,7 @@ export default function CartItem() {
           ))}
         </div>
       ) : (
-        <div className="h-96 flex justify-center items-center">
+        <div className="h-96 flex justify-center ">
           <p className="font-satoshi font-normal text-[#00000099] text-center mt">
             There is no product in your cart start adding some{" "}
             <Link href={"/products"} className="text-black font-bold underline">

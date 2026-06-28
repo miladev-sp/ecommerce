@@ -25,10 +25,13 @@ export async function getCategories() {
   return products;
 }
 
-export async function getProductsByCategory(category) {
-  const result = await fetch(BASE_URL + `/products/category/${category}`, {
-    cache: "force-cache",
-  });
+export async function getProductsByCategory(category, limit) {
+  const result = await fetch(
+    BASE_URL + `/products/category/${category}?limit=${limit}`,
+    {
+      cache: "force-cache",
+    },
+  );
   const products = await result.json();
   return products;
 }
@@ -45,14 +48,11 @@ export async function loginUser(username, password) {
   const result = await fetch(BASE_URL + "/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(
-      {
-        username,
-        password,
-        expiresInMins: 30, // optional, defaults to 60
-      },
-      { cache: "force-cache" },
-    ),
+    body: JSON.stringify({
+      username,
+      password,
+      expiresInMins: 30, // optional, defaults to 60
+    }),
   });
   const user = await result.json();
   return user;
@@ -65,4 +65,25 @@ export async function sortProducts(sort, limit) {
   );
   const products = await result.json();
   return products;
+}
+
+export async function getFilteredProducts({
+  category = "",
+  sort = "rating",
+  order = "asc",
+  page = 1,
+  limit = 10,
+  search = "",
+}) {
+  const skip = (page - 1) * limit;
+  const params = `limit=${limit}&skip=${skip}&sortBy=${sort}&order=${order}`;
+
+  let url = `${BASE_URL}/products?${params}`;
+
+  if (search) url = `${BASE_URL}/products/search?q=${search}&${params}`;
+  else if (category)
+    url = `${BASE_URL}/products/category/${category}?${params}`;
+
+  const result = await fetch(url);
+  return result.json();
 }

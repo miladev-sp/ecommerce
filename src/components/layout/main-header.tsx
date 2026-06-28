@@ -5,14 +5,18 @@ import navBar from "@/public/nav-menu.png";
 import MobileNav from "./mobile-nav";
 import search from "@/public/search.png";
 import cart from "@/public/cart.png";
-import user from "@/public/user.png";
+import usericon from "@/public/user.png";
 import Image from "next/image";
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { useCart } from "@/src/context/CartContext";
+import { useAuth } from "@/src/context/AuthContext";
 export default function MainHeader() {
+  const { user, logout } = useAuth();
+  const [isUserOpen, setIsUserOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBannerOpen, setIsBannerOpen] = useState(true);
   const { cartItems } = useCart();
   const orderCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   function openMenuHandler() {
@@ -21,15 +25,20 @@ export default function MainHeader() {
   return (
     <header>
       <MobileNav isOpen={isMenuOpen} onClose={openMenuHandler} />
-      <div className="flex bg-black text-white h-8 justify-center items-center relative  ">
-        <p className="font-satoshi font-normal text-[12px] lg:text-[14px] ">
-          Sign up and get 20% off to your first order.
-          <Link href={"/"} className=" underline ml-0.5">
-            Sign Up Now
-          </Link>
-        </p>
-        <RxCross2 className=" absolute right-20 hidden sm:block cursor-pointer" />
-      </div>
+      {user || !isBannerOpen ? null : (
+        <div className="flex bg-black text-white h-8 justify-center items-center relative">
+          <p className="font-satoshi font-normal text-[12px] lg:text-[14px] ">
+            Sign up and get 20% off to your first order.
+            <Link href={"/register"} className=" underline ml-0.5">
+              Sign Up Now
+            </Link>
+          </p>
+          <RxCross2
+            className=" absolute right-20 hidden sm:block cursor-pointer"
+            onClick={() => setIsBannerOpen(false)}
+          />
+        </div>
+      )}
       <div className="flex justify-between items-center py-2.5 px-4 sm:px-8 md:justify-normal xl:mx-15 my-2 xl:my-3">
         <div className="flex gap-3 items-center   xl:grow-0.9 ">
           <Image
@@ -84,9 +93,55 @@ export default function MainHeader() {
               )}
             </Link>
           </div>
-          <Link href={"/"}>
-            <Image src={user} alt="user" width={24} height={24} priority />
-          </Link>
+          <div className="relative">
+            {user ? (
+              <>
+                <Image
+                  src={user.image}
+                  alt="user avatar"
+                  width={30}
+                  height={30}
+                  className="cursor-pointer rounded-full"
+                  onClick={() => setIsUserOpen((prev) => !prev)}
+                />
+                {isUserOpen && (
+                  <div className="absolute top-9 right-0 bg-black text-white p-2 rounded-xl flex flex-col gap-2 z-50 w-28">
+                    <button
+                      onClick={() => {
+                        logout();
+                        setIsUserOpen(false);
+                      }}
+                      className="text-left cursor-pointer"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <Image
+                  src={usericon}
+                  alt="user"
+                  width={24}
+                  height={24}
+                  priority
+                  className="cursor-pointer"
+                  onClick={() => setIsUserOpen((prev) => !prev)}
+                />
+                {isUserOpen && (
+                  <div className="absolute top-8 right-0 bg-black text-white p-2 rounded-xl flex flex-col gap-2 z-50 w-24">
+                    <Link href="/login" onClick={() => setIsUserOpen(false)}>
+                      Login
+                    </Link>
+                    <Link href="/register" onClick={() => setIsUserOpen(false)}>
+                      Signup
+                    </Link>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </header>
