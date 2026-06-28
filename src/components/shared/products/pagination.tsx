@@ -42,15 +42,13 @@ export default function Pagination({
     if (category) params.set("category", category);
     return `/products?${params.toString()}`;
   }
+  const hasPrev = currentPage > 1;
+  const hasNext = currentPage < totalPages;
   return (
     <div className="mx-8 mt-5 mb-11">
-      <div className=" flex justify-between ">
+      <div className=" flex justify-center ">
         <Link
-          href={
-            totalPages > pages.length - 1
-              ? `${buildUrl(currentPage - 1)}`
-              : buildUrl(currentPage)
-          }
+          href={hasPrev ? buildUrl(currentPage - 1) : ""}
           className="flex justify-center items-center py-2 px-3.5 gap-2 font-satoshi font-medium text-[12px] rounded-lg border border-[#0000001A]"
         >
           <FaArrowLeft />
@@ -78,11 +76,7 @@ export default function Pagination({
           )}
         </div>
         <Link
-          href={
-            totalPages < pages.length - 1
-              ? `${buildUrl(currentPage - 1)}`
-              : buildUrl(currentPage)
-          }
+          href={hasNext ? buildUrl(currentPage + 1) : ""}
           className="flex justify-center items-center py-2 px-3.5 gap-2 font-satoshi font-medium text-[12px] rounded-lg border border-[#0000001A]"
         >
           Next
