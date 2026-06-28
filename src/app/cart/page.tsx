@@ -36,12 +36,14 @@ export default function CartPage() {
             <CartSummary />
           </div>
         ) : (
-          <h2>
-            For seeing your cart you should first Login{" "}
-            <Link href={"/login"} className="font-bold underline">
-              Login
-            </Link>
-          </h2>
+          <div className="h-96 flex justify-center items-center">
+            <h2>
+              For seeing your cart you should first{" "}
+              <Link href={"/login"} className="font-bold underline">
+                Login
+              </Link>
+            </h2>
+          </div>
         )}
       </div>
     </div>

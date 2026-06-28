@@ -46,7 +46,7 @@ export default function Pagination({
   const hasNext = currentPage < totalPages;
   return (
     <div className="mx-8 mt-5 mb-11">
-      <div className=" flex justify-center ">
+      <div className=" flex justify-center gap-2 ">
         <Link
           href={hasPrev ? buildUrl(currentPage - 1) : ""}
           className="flex justify-center items-center py-2 px-3.5 gap-2 font-satoshi font-medium text-[12px] rounded-lg border border-[#0000001A]"

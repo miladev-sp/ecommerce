@@ -136,7 +136,7 @@ export default function CartItem() {
           ))}
         </div>
       ) : (
-        <div className="h-96 flex justify-center ">
+        <div className="h-96 flex justify-center items-center">
           <p className="font-satoshi font-normal text-[#00000099] text-center mt">
             There is no product in your cart start adding some{" "}
             <Link href={"/products"} className="text-black font-bold underline">

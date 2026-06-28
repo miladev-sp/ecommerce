@@ -6,18 +6,27 @@ import ProductTabs from "@/src/components/shared/product-details/products-tabs";
 import SimilarProducts from "@/src/components/shared/product-details/similar-products";
 import DetailsSelector from "@/src/components/shared/product-details/product-details-selector";
 import { notFound } from "next/navigation";
+import { Product } from "@/src/types";
 type Props = {
   params: Promise<{ id: string }>;
 };
 
 export default async function ProductDetailPage({ params }: Props) {
   const id = (await params).id;
-
+  const products = await getProducts();
   const product = await getProductById(id);
-  const { total } = await getProducts();
-  if (id > total) {
+  if (Number(id) > products.total) {
     notFound();
   }
+  if (!product) {
+    notFound();
+  }
+  if (
+    products.products.every((product: Product) => product.id !== Number(id))
+  ) {
+    notFound();
+  }
+
   return (
     <div className="mx-6 md:mx-8 xl:mx-20">
       <BreadCrumb product={product} />

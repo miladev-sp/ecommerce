@@ -58,7 +58,7 @@ export default function ProductCard({ product }: Props) {
         </div>
         <div className="mt-1.5 flex gap-1 items-center">
           <p className="font-satoshi font-bold text-[20px] lg:text-[24px]">
-            {discountAmount ? `$${discountedPrice}` : product.price}
+            {discountAmount ? `$${discountedPrice}` : `$${product.price}`}
           </p>
           <p className="line-through text-[#00000066] font-satoshi font-bold lg:text-[24px]">
             {discountAmount ? `$${product.price}` : ""}
