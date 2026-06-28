@@ -31,7 +31,7 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
       </div>
       <ProductTabs product={product} />
-      <SimilarProducts category={product.category} />
+      <SimilarProducts category={product.category} products={product} />
     </div>
   );
 }
