@@ -6,7 +6,7 @@ import prada from "@/public/prada-logo.png";
 import calvin from "@/public/calvin-logo.png";
 export default function BrandLogos() {
   return (
-    <div className="bg-black py-10 px-5 grid grid-cols-3 sm:flex  gap-4 items-center justify-center sm:gap-10 z-50 xl:gap-30">
+    <div className="bg-black py-10 px-5 grid grid-cols-3 sm:flex  gap-4 items-center justify-center sm:gap-10  xl:gap-30">
       <div className=" flex justify-center">
         <Image
           src={versace}

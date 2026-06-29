@@ -6,11 +6,8 @@ import Link from "next/link";
 import hero2 from "@/public/hero2.png";
 export default function HeroSection() {
   return (
-    <div
-      className=" md:grid  md:grid-cols-[1fr_1fr] relative lg:min-h-165.75   xl:bg-cover bg-[#F2F0F1] 
-    -z-10"
-    >
-      <div className="px-4 py-5 sm:px-8 md:flex md:flex-col md:justify-center max-md:h-fit z-20 xl:px-20    ">
+    <div className=" md:grid  md:grid-cols-[1fr_1fr] relative lg:min-h-165.75   xl:bg-cover bg-[#F2F0F1] ">
+      <div className="px-4 py-5 sm:px-8 md:flex md:flex-col md:justify-center max-md:h-fit z-30 xl:px-20    ">
         <div>
           <h1 className=" font-integral text-4xl font-bold xl:text-[64px] ">
             FIND CLOTHES THAT MATCHES YOUR STYLE
@@ -20,9 +17,9 @@ export default function HeroSection() {
             designed to bring out your individuality and cater to your sense of
             style.
           </p>
-          <Link href={"/products"}>
+          <Link href={"/products"} className="z-50">
             <button
-              className="bg-black font-satoshi font-medium w-full mt-3 rounded-[62px] text-white px-13.5 py-4 xl:w-1/2  xl:mt-6 cursor-pointer z-40"
+              className="bg-black font-satoshi font-medium w-full mt-3 rounded-[62px] text-white px-13.5 py-4 xl:w-1/2  xl:mt-6 cursor-pointer "
               type="button"
             >
               Shop Now
@@ -79,7 +76,7 @@ export default function HeroSection() {
       <Image
         src={hero2}
         alt=""
-        className="absolute -z-20 w-full hidden min-[1376px]:block"
+        className="absolute bottom-0  w-full hidden min-[1376px]:block"
         priority
       />
     </div>
