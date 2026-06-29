@@ -50,6 +50,7 @@ export default function Pagination({
         <Link
           href={hasPrev ? buildUrl(currentPage - 1) : ""}
           className="flex justify-center items-center py-2 px-3.5 gap-2 font-satoshi font-medium text-[12px] rounded-lg border border-[#0000001A] lg:text-sm"
+          prefetch
         >
           <FaArrowLeft />
           Previous
@@ -69,6 +70,7 @@ export default function Pagination({
                 key={page}
                 href={buildUrl(page)}
                 className={`px-2 flex justify-center items-center rounded-lg text-[12px] text-[#00000080]  ${currentPage === page ? "bg-[#0000000F] text-black " : ""} lg:text-sm`}
+                prefetch
               >
                 {page}
               </Link>
@@ -78,6 +80,7 @@ export default function Pagination({
         <Link
           href={hasNext ? buildUrl(currentPage + 1) : ""}
           className="flex justify-center items-center py-2 px-3.5 gap-2 font-satoshi font-medium text-[12px] rounded-lg border border-[#0000001A] lg:text-sm"
+          prefetch
         >
           Next
           <FaArrowRight />

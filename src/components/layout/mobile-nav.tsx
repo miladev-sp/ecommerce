@@ -25,7 +25,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               <Link href={"/products"}>Shop</Link>
             </li>
             <li>
-              <Link href={"/ptoducts"}>On Sale</Link>
+              <Link href={"/products"}>On Sale</Link>
             </li>
             <li>
               <Link href={"/products"}>New Arrivals</Link>
