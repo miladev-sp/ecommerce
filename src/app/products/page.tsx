@@ -14,22 +14,24 @@ type Props = {
     page?: string;
     sort?: string;
     order?: string;
-    search: string;
+    search?: string;
   };
 };
 export default async function ProductsPage({ searchParams }: Props) {
-  const { page, category, sort, order } = await searchParams;
+  const { page, category, sort, order, search } = await searchParams;
   const categories = await getProductsList();
   const resolvedPage = Number(page) || 1;
   const resolvedCategory = category || "";
   const resolvedSort = sort || "rating";
   const resolvedOrder = order || "desc";
+  const resolvedSearch = search || "";
 
   const data = await getFilteredProductss({
     page: resolvedPage,
     category: resolvedCategory,
     sort: resolvedSort,
     order: resolvedOrder,
+    search: resolvedSearch,
   });
   if (!data) {
     return (
@@ -87,6 +89,7 @@ export default async function ProductsPage({ searchParams }: Props) {
                 category={resolvedCategory}
                 sort={resolvedSort}
                 order={resolvedOrder}
+                search={resolvedSearch}
               />
             </Suspense>
           </div>

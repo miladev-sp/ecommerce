@@ -12,7 +12,9 @@ import { CiSearch } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { useCart } from "@/src/context/CartContext";
 import { useAuth } from "@/src/context/AuthContext";
+import { useRouter } from "next/navigation";
 export default function MainHeader() {
+  const router = useRouter();
   const { user, logout } = useAuth();
   const [isUserOpen, setIsUserOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,6 +23,12 @@ export default function MainHeader() {
   const orderCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   function openMenuHandler() {
     setIsMenuOpen((prev) => !prev);
+  }
+  function searchSubmitHandleer(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const search = formData.get("search");
+    router.push(`/products?search=${search}`);
   }
   return (
     <header>
@@ -70,15 +78,18 @@ export default function MainHeader() {
         </div>
         <div className="flex gap-3 items-center  md:grow-5  ">
           <div className="md:block hidden  w-full xl:w-10/12 relative   ">
-            <input
-              type="text"
-              placeholder="Search for products..."
-              className=" font-satoshi border-0 outline-0 rounded-[62px]   ml-2.5  placeholder-[#00000066] pl-8 bg-[#F0F0F0]  w-[90%] py-2 xl:py-3 "
-            />
-            <CiSearch
-              className=" absolute z-10  left-4.5 top-1/2 bottom-0 translate-y-[-50%] "
-              size={20}
-            />
+            <form onSubmit={searchSubmitHandleer}>
+              <input
+                type="text"
+                placeholder="Search for products..."
+                className=" font-satoshi border-0 outline-0 rounded-[62px]   ml-2.5  placeholder-[#00000066] pl-8 bg-[#F0F0F0]  w-[90%] py-2 xl:py-3 "
+                name="search"
+              />
+              <CiSearch
+                className=" absolute z-10  left-4.5 top-1/2 bottom-0 translate-y-[-50%] "
+                size={20}
+              />
+            </form>
           </div>
           <Link href={"/"} className=" md:hidden">
             <Image src={search} alt="search" width={24} height={24} priority />
