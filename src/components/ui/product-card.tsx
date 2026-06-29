@@ -24,7 +24,7 @@ export default function ProductCard({ product }: Props) {
   return (
     <Link href={`/products/${product.id}`}>
       <div className="flex flex-col h-full gap-1">
-        <div className="bg-[#F0EEED] p-3 rounded-[13px] ">
+        <div className="bg-[#F0EEED] p-3 rounded-[13px] flex items-center justify-center ">
           <Image src={product.thumbnail} alt="" width={295} height={295} />
         </div>
         <p className="mt-2.5 font-satoshi font-bold text-[16px] line-clamp-2 min-h-12 lg:text-[20px] ">

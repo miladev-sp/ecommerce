@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 const BASE_URL = "https://dummyjson.com";
 
 export async function getProducts(limit = 20) {
@@ -67,23 +69,32 @@ export async function sortProducts(sort, limit) {
   return products;
 }
 
-export async function getFilteredProducts({
-  category = "",
-  sort = "rating",
-  order = "asc",
-  page = 1,
-  limit = 10,
-  search = "",
-}) {
-  const skip = (page - 1) * limit;
-  const params = `limit=${limit}&skip=${skip}&sortBy=${sort}&order=${order}`;
+export const getFilteredProductss = cache(
+  async ({
+    category = "",
+    sort = "rating",
+    order = "asc",
+    page = 1,
+    limit = 12,
+    search = "",
+  }) => {
+    const skip = (page - 1) * limit;
+    const params = `limit=${limit}&skip=${skip}&sortBy=${sort}&order=${order}`;
 
-  let url = `${BASE_URL}/products?${params}`;
+    let url = `${BASE_URL}/products?${params}`;
 
-  if (search) url = `${BASE_URL}/products/search?q=${search}&${params}`;
-  else if (category)
-    url = `${BASE_URL}/products/category/${category}?${params}`;
+    if (search) {
+      url = `${BASE_URL}/products/search?q=${search}&${params}`;
+    } else if (category) {
+      url = `${BASE_URL}/products/category/${category}?${params}`;
+    }
+    const result = await fetch(url);
+    const data = await result.json();
+    return data;
+  },
+);
 
-  const result = await fetch(url);
-  return result.json();
+export async function getProductsList() {
+  const result = await fetch("https://dummyjson.com/products/category-list");
+  return await result.json();
 }

@@ -22,16 +22,16 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
           <IoMdClose className=" self-end mt-6" size={24} onClick={onClose} />
           <ul className=" flex flex-col gap-2 font-satoshi ">
             <li>
-              <Link href={"/"}>Shop</Link>
+              <Link href={"/products"}>Shop</Link>
             </li>
             <li>
-              <Link href={"/"}>On Sale</Link>
+              <Link href={"/ptoducts"}>On Sale</Link>
             </li>
             <li>
-              <Link href={"/"}>New Arrivals</Link>
+              <Link href={"/products"}>New Arrivals</Link>
             </li>
             <li>
-              <Link href={"/"}>Brands</Link>
+              <Link href={"/products"}>Brands</Link>
             </li>
           </ul>
         </div>

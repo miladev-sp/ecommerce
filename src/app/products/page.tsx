@@ -1,10 +1,14 @@
-import { getFilteredProducts } from "@/src/lib/api/dummyjson";
-import Image from "next/image";
-import Link from "next/link";
-import filter from "@/public/icons/filter-icon.png";
-import { FaAngleRight } from "react-icons/fa";
+import { getFilteredProductss, getProductsList } from "@/src/lib/api/dummyjson";
 import ProductGrid from "@/src/components/shared/products/products-grid";
 import Pagination from "@/src/components/shared/products/pagination";
+import ProductsTopBar from "@/src/components/shared/products/products-top-bar";
+import ProductsFilters from "@/src/components/shared/products/products-filters";
+import Link from "next/link";
+import { FaAngleRight } from "react-icons/fa";
+import { Suspense } from "react";
+import ProductsSkeleton from "@/src/components/shared/products/product-skeleton";
+import ProductsSection from "@/src/components/shared/products/product-section";
+import { useRouter } from "next/navigation";
 type Props = {
   searchParams: {
     category?: string;
@@ -15,25 +19,41 @@ type Props = {
   };
 };
 export default async function ProductsPage({ searchParams }: Props) {
+  const router = useRouter();
   const { page, category, sort, order } = await searchParams;
-
+  const categories = await getProductsList();
   const resolvedPage = Number(page) || 1;
   const resolvedCategory = category || "";
   const resolvedSort = sort || "rating";
   const resolvedOrder = order || "desc";
 
-  const data = await getFilteredProducts({
+  const data = await getFilteredProductss({
     page: resolvedPage,
     category: resolvedCategory,
     sort: resolvedSort,
     order: resolvedOrder,
   });
-  const limit = 10;
-  const start = (resolvedPage - 1) * limit + 1;
-  const end = Math.min(resolvedPage * limit, data.total);
+  if (!data) {
+    return (
+      <div className="h-[70vh] w-full flex items-center">
+        <h1>
+          Failed to load products please{" "}
+          <span
+            className="underline text-bold"
+            onClick={() => router.refresh()}
+          >
+            Refresh
+          </span>{" "}
+          the page
+        </h1>
+      </div>
+    );
+  }
+
   return (
-    <div className="mx-7 md:mx-8 xl:mx-20">
-      <div className="lg:ml-7">
+    <>
+      <div className="mx-8 lg:mx-20">
+        <hr className="text-[#0000001A] " />
         <div className="flex items-center  gap-2 mt-4 mb-4 overflow-x-auto hide-scrollbar">
           <Link
             href={"/"}
@@ -50,40 +70,45 @@ export default async function ProductsPage({ searchParams }: Props) {
           </Link>
         </div>
       </div>
-      <div className="flex items-start gap-1">
-        <h2 className="font-satoshi font-bold text-2xl">
-          {category || "Products"}
-        </h2>
-        <div className="flex items-center justify-between grow">
-          <p className="font-satoshi text-[#00000099] text-sm">
-            Showing {start}-{end} of {data.total} Products
-          </p>
-          <button
-            type="button"
-            className="bg-[#F0F0F0] w-10 h-10 flex items-center justify-center rounded-full lg:w-12 lg:h-12 cursor-pointer  "
-          >
-            <Image
-              src={filter}
-              alt="filter"
-              width={20}
-              height={20}
-              className="lg:size-6"
+      <div className="mx-7 md:mx-8 xl:mx-20 lg:flex lg:gap-8 mt-7">
+        <div className="hidden lg:block">
+          <ProductsFilters />
+        </div>
+        <div className="w-full">
+          <div className="lg:ml-7">
+            <ProductsTopBar
+              currentPage={resolvedPage}
+              category={resolvedCategory}
+              data={data}
+              categories={categories}
+              order={resolvedOrder}
+              sort={resolvedSort}
             />
-          </button>
+          </div>
+          <div className="mt-6 md:mx-16">
+            <Suspense
+              key={`${resolvedPage}-${resolvedCategory}-${resolvedSort}-${resolvedOrder}`}
+              fallback={<ProductsSkeleton />}
+            >
+              <ProductsSection
+                page={resolvedPage}
+                category={resolvedCategory}
+                sort={resolvedSort}
+                order={resolvedOrder}
+              />
+            </Suspense>
+          </div>
+          <div>
+            <hr className="text-[#0000001A] mt-5" />
+            <Pagination
+              currentPage={resolvedPage}
+              category={resolvedCategory}
+              total={data.total}
+              limit={12}
+            />
+          </div>
         </div>
       </div>
-      <div className="mt-6">
-        <ProductGrid product={data} />
-      </div>
-      <div>
-        <hr className="text-[#0000001A] mt-5" />
-        <Pagination
-          currentPage={resolvedPage}
-          category={resolvedCategory}
-          total={data.total}
-          limit={10}
-        />
-      </div>
-    </div>
+    </>
   );
 }

@@ -46,21 +46,21 @@ export default function Pagination({
   const hasNext = currentPage < totalPages;
   return (
     <div className="mx-8 mt-5 mb-11">
-      <div className=" flex justify-center gap-2 ">
+      <div className=" flex justify-center gap-2 lg:justify-between">
         <Link
           href={hasPrev ? buildUrl(currentPage - 1) : ""}
-          className="flex justify-center items-center py-2 px-3.5 gap-2 font-satoshi font-medium text-[12px] rounded-lg border border-[#0000001A]"
+          className="flex justify-center items-center py-2 px-3.5 gap-2 font-satoshi font-medium text-[12px] rounded-lg border border-[#0000001A] lg:text-sm"
         >
           <FaArrowLeft />
           Previous
         </Link>
 
-        <div className="flex gap-1 justify-between ">
+        <div className="flex gap-1 lg:gap-6 justify-between ">
           {pages.map((page, i) =>
             page === "..." ? (
               <span
                 key={page + i}
-                className=" px-2 text-[#00000080] font-satoshi font-medium flex justify-center items-center rounded-lg"
+                className=" px-2 text-[#00000080] font-satoshi font-medium flex justify-center items-center rounded-lg lg:text-sm"
               >
                 ...
               </span>
@@ -68,7 +68,7 @@ export default function Pagination({
               <Link
                 key={page}
                 href={buildUrl(page)}
-                className={`px-2 flex justify-center items-center rounded-lg text-[12px] text-[#00000080]  ${currentPage === page ? "bg-[#0000000F] text-black " : ""}`}
+                className={`px-2 flex justify-center items-center rounded-lg text-[12px] text-[#00000080]  ${currentPage === page ? "bg-[#0000000F] text-black " : ""} lg:text-sm`}
               >
                 {page}
               </Link>
@@ -77,7 +77,7 @@ export default function Pagination({
         </div>
         <Link
           href={hasNext ? buildUrl(currentPage + 1) : ""}
-          className="flex justify-center items-center py-2 px-3.5 gap-2 font-satoshi font-medium text-[12px] rounded-lg border border-[#0000001A]"
+          className="flex justify-center items-center py-2 px-3.5 gap-2 font-satoshi font-medium text-[12px] rounded-lg border border-[#0000001A] lg:text-sm"
         >
           Next
           <FaArrowRight />

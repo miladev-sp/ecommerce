@@ -57,9 +57,13 @@ export default function ProductInfo({ product }: Prop) {
         <p className="line-through text-[#00000066] font-satoshi text-[24px] font-bold lg:text-[24px] xl:text-[32px]">
           {discountAmount ? `$${product.price}` : ""}
         </p>
-        <p className="py-1.5 px-3.5 bg-[#FF33331A] text-[14px] font-satoshi font-medium rounded-[62px] text-[#FF3333] lg:text-[12px] lg:px-4 lg:py-1.5 xl:text-[16px]">
-          {discountAmount ? `-${roundDiscountPercentage}%` : ""}
-        </p>
+        {discountAmount ? (
+          <p className="py-1.5 px-3.5 bg-[#FF33331A] text-[14px] font-satoshi font-medium rounded-[62px] text-[#FF3333] lg:text-[12px] lg:px-4 lg:py-1.5 xl:text-[16px]">
+            {discountAmount ? `-${roundDiscountPercentage}%` : ""}
+          </p>
+        ) : (
+          ""
+        )}
       </div>
       <p className="mt-3 font-satoshi font-normal text-[14px] text-[#00000099] xl:text-[16px]">
         {product.description}
