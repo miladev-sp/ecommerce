@@ -7,14 +7,42 @@ import SimilarProducts from "@/src/components/shared/product-details/similar-pro
 import DetailsSelector from "@/src/components/shared/product-details/product-details-selector";
 import { notFound } from "next/navigation";
 import { Product } from "@/src/types";
+import { Metadata } from "next";
 type Props = {
   params: Promise<{ id: string }>;
 };
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const id = (await params).id;
+
+  const product = await getProductById(id);
+
+  if (!product) {
+    return {
+      title: "Product not found",
+    };
+  }
+
+  return {
+    title: product.title,
+    description: product.description,
+
+    openGraph: {
+      title: product.title,
+      description: product.description,
+      images: [
+        {
+          url: product.thumbnail,
+        },
+      ],
+    },
+  };
+}
 
 export default async function ProductDetailPage({ params }: Props) {
   const id = (await params).id;
   const products = await getProducts();
   const product = await getProductById(id);
+
   if (Number(id) > products.total) {
     notFound();
   }
