@@ -1,5 +1,6 @@
 import { getFilteredProductss } from "@/src/lib/api/dummyjson";
 import ProductGrid from "./products-grid";
+import Pagination from "@/src/components/shared/products/pagination";
 
 type Props = {
   page: number;
@@ -23,15 +24,28 @@ export default async function ProductsSection({
     order,
     search,
   });
+
   if (!data) {
     return (
       <div className="h-[70vh] w-full flex items-center">
         <h1>
           Failed to load products please{" "}
-          <span className="underline text-bold">Refresh</span> the page
+          <span className="underline font-bold">Refresh</span> the page
         </h1>
       </div>
     );
   }
-  return <ProductGrid product={data} />;
+
+  return (
+    <>
+      <ProductGrid product={data} />
+      <hr className="text-[#0000001A] mt-5" />
+      <Pagination
+        currentPage={page}
+        category={category}
+        total={data.total}
+        limit={12}
+      />
+    </>
+  );
 }

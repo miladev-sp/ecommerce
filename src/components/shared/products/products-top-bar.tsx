@@ -38,6 +38,7 @@ export default function ProductsTopBar({
   const [isStyleOpen, setIsStyleOpen] = useState(true);
   const [selectedSize, setSelectedSize] = useState("Medium");
   const [isSortOpen, setIsSortOpen] = useState(false);
+
   let initialSort;
   if (sort === "price" && order === "asc") {
     initialSort = "The cheapest";
@@ -56,7 +57,6 @@ export default function ProductsTopBar({
   const limit = 10;
   const start = (currentPage - 1) * limit + 1;
   const end = Math.min(currentPage * limit, data.total);
-  console.log(Drawer);
   return (
     <>
       <Drawer.Root>
