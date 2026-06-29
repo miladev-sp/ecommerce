@@ -22,7 +22,7 @@ export default function HeroSection() {
           </p>
           <Link href={"/products"}>
             <button
-              className="bg-black font-satoshi font-medium w-full mt-3 rounded-[62px] text-white px-13.5 py-4 xl:w-1/2  xl:mt-6 cursor-pointer"
+              className="bg-black font-satoshi font-medium w-full mt-3 rounded-[62px] text-white px-13.5 py-4 xl:w-1/2  xl:mt-6 cursor-pointer z-40"
               type="button"
             >
               Shop Now
