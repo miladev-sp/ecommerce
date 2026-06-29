@@ -42,7 +42,6 @@ export default async function ProductDetailPage({ params }: Props) {
   const id = (await params).id;
   const products = await getProducts();
   const product = await getProductById(id);
-
   if (Number(id) > products.total) {
     notFound();
   }
