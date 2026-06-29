@@ -76,7 +76,7 @@ export default function HeroSection() {
       <Image
         src={hero2}
         alt=""
-        className="absolute bottom-0  w-full hidden min-[1376px]:block"
+        className="absolute   h-full w-full hidden  min-[1376px]:block"
         priority
       />
     </div>

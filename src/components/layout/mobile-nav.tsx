@@ -8,7 +8,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
   return (
     <>
       <div
-        className={` h-screen  backdrop-blur-[2px] z-30 w-full fixed  left-0 top-0  ${isOpen ? "block" : "hidden"}`}
+        className={` h-screen backdrop-blur-[2px] z-30 w-full fixed  left-0 top-0  ${isOpen ? "block" : "hidden"}`}
         onClick={onClose}
       />
       <div
