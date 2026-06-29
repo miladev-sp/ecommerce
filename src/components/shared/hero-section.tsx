@@ -3,9 +3,10 @@ import hero from "@/public/hero.png";
 import heroIcon from "@/public/hero-icon.png";
 import heroIcon2 from "@/public/hero-icon2.png";
 import Link from "next/link";
+import hero2 from "@/public/hero2.png";
 export default function HeroSection() {
   return (
-    <div className="bg-[#F2F0F1] md:grid  md:grid-cols-[1fr_1fr] relative lg:min-h-165.75  min-[1376px]:bg-[url(@/public/hero2.png)]   xl:bg-cover ">
+    <div className=" md:grid  md:grid-cols-[1fr_1fr] relative lg:min-h-165.75   xl:bg-cover ">
       <div className="px-4 py-5 sm:px-8 md:flex md:flex-col md:justify-center max-md:h-fit z-20 xl:px-20  ">
         <div>
           <h1 className=" font-integral text-4xl font-bold xl:text-[64px] ">
@@ -59,16 +60,20 @@ export default function HeroSection() {
           priority
           className="min-[1376px]:hidden  w-full h-auto  "
         />
-        <img
-          src={heroIcon.src}
+        <Image
+          src={heroIcon}
           className="absolute right-5 sm:right-24 md:right-8.75 md:top-10 lg:top-23.25 lg:right-20 lg:w-26 lg:h-26"
           alt=""
+          priority
         />
-        <img
-          src={heroIcon2.src}
+        <Image
+          src={heroIcon2}
           className="absolute left-6.75 top-35 sm:left-24 md:left-10 lg:top-82.25 lg:left-10.5 lg:w-[56px]lg:h-[56px]"
+          alt=""
+          priority
         />
       </div>
+      <Image src={hero2} alt="" className="absolute -z-20 w-full" priority />
     </div>
   );
 }
