@@ -10,6 +10,7 @@ export type User = {
   lastName: string;
   image: string;
   accessToken: string;
+  password: string;
 };
 
 type AuthContextType = {
@@ -83,11 +84,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setError("Failed to Login Please try again");
         throw Error("Failed to Login Please try again");
       }
+      if (
+        !user.email ||
+        !user.firstName ||
+        !user.lastName ||
+        !user.username ||
+        !user.password
+      ) {
+        setError("Please fill all the fields.");
+        throw Error("Failed to Login Please try again");
+      }
       const data: User = await result.json();
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
     } catch (error) {
-      setError("Check your username or password!");
+      setError("Please fill all the fields.");
       throw Error("Failed to Login Please try again");
     } finally {
       setIsLoading(false);

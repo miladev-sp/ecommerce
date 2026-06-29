@@ -27,6 +27,7 @@ export default function RegisterPage() {
       lastName: formData.get("lastname") as string,
       image: "https://dummyjson.com/icon/emilys/128",
       accessToken: crypto.randomUUID(),
+      password: formData.get("password") as string,
     };
     await signup(user);
   };

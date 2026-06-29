@@ -6,8 +6,11 @@ import Link from "next/link";
 import hero2 from "@/public/hero2.png";
 export default function HeroSection() {
   return (
-    <div className=" md:grid  md:grid-cols-[1fr_1fr] relative lg:min-h-165.75   xl:bg-cover bg-[#F2F0F1] ">
-      <div className="px-4 py-5 sm:px-8 md:flex md:flex-col md:justify-center max-md:h-fit z-20 xl:px-20    bg-[#F2F0F1]">
+    <div
+      className=" md:grid  md:grid-cols-[1fr_1fr] relative lg:min-h-165.75   xl:bg-cover bg-[#F2F0F1] 
+    -z-10"
+    >
+      <div className="px-4 py-5 sm:px-8 md:flex md:flex-col md:justify-center max-md:h-fit z-20 xl:px-20    ">
         <div>
           <h1 className=" font-integral text-4xl font-bold xl:text-[64px] ">
             FIND CLOTHES THAT MATCHES YOUR STYLE
