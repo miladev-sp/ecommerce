@@ -301,16 +301,16 @@ export default function ProductsTopBar({
                 ) : (
                   ""
                 )}
-                <div className="w-full mt-6">
-                  <Link
-                    href={"/products"}
-                    onClick={() => setSelectedSort("Most Popular")}
-                  >
+                <Link
+                  href={"/products"}
+                  onClick={() => setSelectedSort("Most Popular")}
+                >
+                  <div className="w-full mt-6">
                     <Drawer.Close className="font-satoshi text-sm font-medium text-white bg-black py-4 px-13.5 rounded-[62px] w-full">
                       Apply Filter
                     </Drawer.Close>
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
             </>
           </Drawer.Content>
