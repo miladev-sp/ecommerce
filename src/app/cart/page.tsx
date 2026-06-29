@@ -4,10 +4,13 @@ import CartSummary from "@/src/components/shared/cart-summary";
 import { useAuth } from "@/src/context/AuthContext";
 import Link from "next/link";
 import { FaAngleRight } from "react-icons/fa";
+import Loading from "./loading";
 
 export default function CartPage() {
   const { user, isAuthLoaded } = useAuth();
-  if (!isAuthLoaded) return null;
+  if (!isAuthLoaded) {
+    return <Loading />;
+  }
   return (
     <div className="mx-6 md:mx-8 xl:mx-20">
       <div className="lg:ml-7">

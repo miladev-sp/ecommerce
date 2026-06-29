@@ -25,12 +25,22 @@ export default async function ProductsSection({
     search,
   });
 
+  if (data.total === 0) {
+    return (
+      <div className="h-[70vh] w-full flex items-center justify-center">
+        <h1 className="font-bold ">
+          No products found for{" "}
+          <span className="font-normal text-gray-700">{search}</span>
+        </h1>
+      </div>
+    );
+  }
   if (!data) {
     return (
-      <div className="h-[70vh] w-full flex items-center">
+      <div className="h-[70vh] w-full flex items-center justify-center">
         <h1>
-          Failed to load products please{" "}
-          <span className="underline font-bold">Refresh</span> the page
+          Failed to load products please
+          <span className="font-bold">refresh</span>
         </h1>
       </div>
     );

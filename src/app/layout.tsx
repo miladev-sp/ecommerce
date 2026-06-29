@@ -6,6 +6,10 @@ import MainFooter from "../components/layout/main-footer";
 import { CartProvider } from "../context/CartContext";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "../context/AuthContext";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const Satoshi = localFont({
   src: [
@@ -25,7 +29,7 @@ export const metadata = {
 };
 export default function RootLayout({ children }: LayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body className={`${Satoshi.variable} ${Integral.variable}`}>
         <AuthProvider>
           <CartProvider>

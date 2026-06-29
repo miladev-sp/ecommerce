@@ -65,7 +65,7 @@ export default async function ProductDetailPage({ params }: Props) {
     <div className="mx-6 md:mx-8 xl:mx-20">
       <BreadCrumb product={product} />
       <div className="md:flex md:gap-6 xl:gap-8">
-        <div className="flex-1 ">
+        <div className="flex-1.5  ">
           <ImageGallery product={product} />
         </div>
         <div className="flex-2 xl:flex-1 lg:flex lg:flex-col lg:justify-between">

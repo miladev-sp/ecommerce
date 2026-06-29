@@ -82,7 +82,7 @@ export default function MainHeader() {
               <input
                 type="text"
                 placeholder="Search for products..."
-                className=" font-satoshi border-0 outline-0 rounded-[62px]   ml-2.5  placeholder-[#00000066] pl-8 bg-[#F0F0F0]  w-[90%] py-2 xl:py-3 "
+                className=" font-satoshi border-0 outline-0 rounded-[62px] ml-2.5 placeholder-[#00000066] pl-8 bg-[#F0F0F0] w-[90%] py-2 xl:py-3"
                 name="search"
               />
               <CiSearch
