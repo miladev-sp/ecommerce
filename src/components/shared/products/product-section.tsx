@@ -1,6 +1,5 @@
 import { getFilteredProductss } from "@/src/lib/api/dummyjson";
 import ProductGrid from "./products-grid";
-import { useRouter } from "next/navigation";
 
 type Props = {
   page: number;
@@ -15,20 +14,13 @@ export default async function ProductsSection({
   sort,
   order,
 }: Props) {
-  const router = useRouter();
   const data = await getFilteredProductss({ page, category, sort, order });
   if (!data) {
     return (
       <div className="h-[70vh] w-full flex items-center">
         <h1>
           Failed to load products please{" "}
-          <span
-            className="underline text-bold"
-            onClick={() => router.refresh()}
-          >
-            Refresh
-          </span>{" "}
-          the page
+          <span className="underline text-bold">Refresh</span> the page
         </h1>
       </div>
     );

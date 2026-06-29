@@ -8,7 +8,6 @@ import { FaAngleRight } from "react-icons/fa";
 import { Suspense } from "react";
 import ProductsSkeleton from "@/src/components/shared/products/product-skeleton";
 import ProductsSection from "@/src/components/shared/products/product-section";
-import { useRouter } from "next/navigation";
 type Props = {
   searchParams: {
     category?: string;
@@ -19,7 +18,6 @@ type Props = {
   };
 };
 export default async function ProductsPage({ searchParams }: Props) {
-  const router = useRouter();
   const { page, category, sort, order } = await searchParams;
   const categories = await getProductsList();
   const resolvedPage = Number(page) || 1;
@@ -38,13 +36,7 @@ export default async function ProductsPage({ searchParams }: Props) {
       <div className="h-[70vh] w-full flex items-center">
         <h1>
           Failed to load products please{" "}
-          <span
-            className="underline text-bold"
-            onClick={() => router.refresh()}
-          >
-            Refresh
-          </span>{" "}
-          the page
+          <span className="underline text-bold">Refresh</span> the page
         </h1>
       </div>
     );

@@ -5,14 +5,13 @@ import ProductInfo from "@/src/components/shared/product-details/product-info";
 import ProductTabs from "@/src/components/shared/product-details/products-tabs";
 import SimilarProducts from "@/src/components/shared/product-details/similar-products";
 import DetailsSelector from "@/src/components/shared/product-details/product-details-selector";
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import { Product } from "@/src/types";
 type Props = {
   params: Promise<{ id: string }>;
 };
 
 export default async function ProductDetailPage({ params }: Props) {
-  const router = useRouter();
   const id = (await params).id;
   const products = await getProducts();
   const product = await getProductById(id);
@@ -24,13 +23,7 @@ export default async function ProductDetailPage({ params }: Props) {
       <div className="h-[70vh] w-full flex items-center">
         <h1>
           Failed to load product please{" "}
-          <span
-            className="underline text-bold"
-            onClick={() => router.refresh()}
-          >
-            Refresh
-          </span>{" "}
-          the page
+          <span className="underline text-bold">Refresh</span> the page
         </h1>
       </div>
     );

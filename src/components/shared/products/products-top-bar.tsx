@@ -3,7 +3,6 @@ import Link from "next/link";
 import filter from "@/public/icons/filter-icon.png";
 import {
   FaAngleDown,
-  FaAngleRight,
   FaCheck,
   FaChevronRight,
   FaChevronUp,
@@ -303,7 +302,10 @@ export default function ProductsTopBar({
                   ""
                 )}
                 <div className="w-full mt-6">
-                  <Link href={"/products"}>
+                  <Link
+                    href={"/products"}
+                    onClick={() => setSelectedSort("Most Popular")}
+                  >
                     <Drawer.Close className="font-satoshi text-sm font-medium text-white bg-black py-4 px-13.5 rounded-[62px] w-full">
                       Apply Filter
                     </Drawer.Close>
