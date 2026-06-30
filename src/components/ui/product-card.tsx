@@ -6,15 +6,10 @@ import {
   calculateDiscountAmount,
   calculateDiscountedPrice,
 } from "@/src/lib/utils";
-
 type Props = {
   product: Product;
   index: number;
 };
-
-const BLUR_DATA_URL =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP48O4tAAWdAszZPkQHAAAAAElFTkSuQmCC";
-
 export default function ProductCard({ product, index }: Props) {
   const discountAmount = calculateDiscountAmount(
     product.price,
@@ -40,8 +35,6 @@ export default function ProductCard({ product, index }: Props) {
             fetchPriority={
               index === 0 || index === 1 || index === 2 ? "high" : "auto"
             }
-            placeholder="blur"
-            blurDataURL={BLUR_DATA_URL}
           />
         </div>
         <p className="mt-2.5 font-satoshi font-bold text-[16px] line-clamp-2 min-h-12 lg:text-[20px] ">
