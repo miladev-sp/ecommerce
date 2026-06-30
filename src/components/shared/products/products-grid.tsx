@@ -1,6 +1,5 @@
 "use client";
 
-import useSWR from "swr";
 import { Product, ProductsResponse } from "@/src/types";
 import ProductCard from "../../ui/product-card";
 type Props = {

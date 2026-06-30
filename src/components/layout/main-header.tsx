@@ -7,7 +7,7 @@ import search from "@/public/search.png";
 import cart from "@/public/cart.png";
 import usericon from "@/public/user.png";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { useCart } from "@/src/context/CartContext";
@@ -30,6 +30,30 @@ export default function MainHeader() {
     const search = formData.get("search");
     router.push(`/products?search=${search}`);
   }
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent | TouchEvent) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsUserOpen(false);
+      }
+    }
+
+    if (isUserOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isUserOpen]);
+
   return (
     <header>
       <MobileNav isOpen={isMenuOpen} onClose={openMenuHandler} />
@@ -91,7 +115,7 @@ export default function MainHeader() {
               />
             </form>
           </div>
-          <Link href={"/"} className=" md:hidden">
+          <Link href={""} className=" md:hidden">
             <Image src={search} alt="search" width={24} height={24} priority />
           </Link>
           <div className="relative">
@@ -106,13 +130,14 @@ export default function MainHeader() {
           </div>
           <div className="relative">
             {user ? (
-              <>
+              <div ref={containerRef}>
                 <Image
                   src={user.image}
                   alt="user avatar"
                   width={30}
                   height={30}
-                  className="cursor-pointer rounded-full"
+                  className={`cursor-pointer rounded-full`}
+                  onMouseEnter={() => setIsUserOpen(true)}
                   onClick={() => setIsUserOpen((prev) => !prev)}
                 />
                 {isUserOpen && (
@@ -123,14 +148,15 @@ export default function MainHeader() {
                         setIsUserOpen(false);
                       }}
                       className="text-left cursor-pointer"
+                      onMouseLeave={() => setIsUserOpen(false)}
                     >
                       Logout
                     </button>
                   </div>
                 )}
-              </>
+              </div>
             ) : (
-              <>
+              <div ref={containerRef}>
                 <Image
                   src={usericon}
                   alt="user"
@@ -138,19 +164,28 @@ export default function MainHeader() {
                   height={24}
                   priority
                   className="cursor-pointer"
+                  onMouseEnter={() => setIsUserOpen(true)}
                   onClick={() => setIsUserOpen((prev) => !prev)}
                 />
                 {isUserOpen && (
-                  <div className="absolute top-8 right-0 bg-black text-white p-2 rounded-xl flex flex-col gap-2 z-50 w-24">
-                    <Link href="/login" onClick={() => setIsUserOpen(false)}>
-                      Login
-                    </Link>
-                    <Link href="/register" onClick={() => setIsUserOpen(false)}>
-                      Signup
-                    </Link>
-                  </div>
+                  <>
+                    <div
+                      className="absolute top-8 right-0 z-20 bg-black text-white p-2 rounded-xl flex flex-col gap-2  w-24"
+                      onMouseLeave={() => setIsUserOpen(false)}
+                    >
+                      <Link href="/login" onClick={() => setIsUserOpen(false)}>
+                        Login
+                      </Link>
+                      <Link
+                        href="/register"
+                        onClick={() => setIsUserOpen(false)}
+                      >
+                        Signup
+                      </Link>
+                    </div>
+                  </>
                 )}
-              </>
+              </div>
             )}
           </div>
         </div>

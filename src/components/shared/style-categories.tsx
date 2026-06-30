@@ -6,7 +6,7 @@ export default function StyleCategories() {
       <h2 className="font-integral text-[32px] text-center sm:mb-8 lg:text-[38px]">
         BROWSE BY dress STYLE
       </h2>
-      <div className="flex flex-col gap-2.5 sm:grid sm:grid-cols-2 xl:grid-rows-2 xl:grid-cols-3 ">
+      <div className="flex flex-col gap-2.5 sm:gap-x-5 sm:grid sm:gap-y-0 sm:grid-cols-2 xl:grid-rows-2 xl:grid-cols-3 ">
         <Link href={"/"} className=" xl:col-span-1">
           <div className=" bg-[url(@/public/casual.png)] min-h-47.5  bg-cover p-4 rounded-[20px] mt-5 lg:h-72.25">
             <p className="font-satoshi font-bold text-[24px]">Casual</p>

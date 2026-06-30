@@ -80,7 +80,7 @@ export default function ProductTabs({ product }: Prop) {
                   alt="filter"
                   width={20}
                   height={20}
-                  className="lg:size-6"
+                  className="lg:size-6 w-auto h-auto"
                 />
               </button>
               <div className="hidden lg:flex lg:gap-3.5 lg:items-center bg-[#F0F0F0] py-4 px-5 rounded-[62px] cursor-pointer">

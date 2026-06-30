@@ -1,4 +1,4 @@
-import { getProductById, getProducts } from "@/src/lib/api/dummyjson";
+import { getProductById } from "@/src/lib/api/dummyjson";
 import BreadCrumb from "@/src/components/shared/product-details/breadcrumb";
 import ImageGallery from "@/src/components/shared/product-details/product-image-gallery";
 import ProductInfo from "@/src/components/shared/product-details/product-info";
@@ -6,8 +6,9 @@ import ProductTabs from "@/src/components/shared/product-details/products-tabs";
 import SimilarProducts from "@/src/components/shared/product-details/similar-products";
 import DetailsSelector from "@/src/components/shared/product-details/product-details-selector";
 import { notFound } from "next/navigation";
-import { Product } from "@/src/types";
 import { Metadata } from "next";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -40,11 +41,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProductDetailPage({ params }: Props) {
   const id = (await params).id;
-  const products = await getProducts();
   const product = await getProductById(id);
-  if (Number(id) > products.total) {
-    notFound();
-  }
+
   if (!product) {
     return (
       <div className="h-[70vh] w-full flex items-center">
@@ -55,12 +53,9 @@ export default async function ProductDetailPage({ params }: Props) {
       </div>
     );
   }
-  if (
-    products.products.every((product: Product) => product.id === Number(id))
-  ) {
+  if (Number(id) !== product.id) {
     notFound();
   }
-
   return (
     <div className="mx-6 md:mx-8 xl:mx-20">
       <BreadCrumb product={product} />

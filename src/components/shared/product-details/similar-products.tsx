@@ -1,5 +1,5 @@
 import { Product } from "@/src/types";
-import { getProductsByCategory, sortProducts } from "@/src/lib/api/dummyjson";
+import { getProductsByCategory } from "@/src/lib/api/dummyjson";
 import ProductCard from "../../ui/product-card";
 type Props = {
   category: string;
@@ -17,7 +17,7 @@ export default async function SimilarProducts({ category, products }: Props) {
         You might also like
       </h2>
 
-      <div className="flex gap-5  mt-15 overflow-x-auto  items-stretch justify-center hide-scrollbar">
+      <div className="flex gap-5  mt-15 overflow-x-auto  items-stretch sm:justify-center hide-scrollbar">
         {productsFiltered.map((product: Product) => (
           <div
             className=" w-[clamp(11rem,25vw,20rem)] shrink-0"

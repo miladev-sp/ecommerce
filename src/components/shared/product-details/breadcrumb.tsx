@@ -15,26 +15,26 @@ export default function BreadCrumb({ product }: Prop) {
       <div className="flex items-center  gap-2 mt-4 mb-4 overflow-x-auto hide-scrollbar">
         <Link
           href={"/"}
-          className="text-[14px] text-[#00000099] font-satoshi font-normal xl:text-[16px]"
+          className="text-[14px] text-[#00000099] font-satoshi  xl:text-[16px]"
         >
           Home
         </Link>
-        <FaAngleRight color="#00000099" size={14} className="xl:size-4" />
+        <FaAngleRight color="#00000099" size={14} />
         <Link
           href={"/products"}
-          className="text-[14px] text-[#00000099] font-satoshi font-normal xl:text-[16px]"
+          className="text-[14px] text-[#00000099] font-satoshi  xl:text-[16px]"
         >
           Shop
         </Link>
-        <FaAngleRight color="#00000099" size={14} className="xl:size-4" />
+        <FaAngleRight color="#00000099" size={14} />
         <Link
           href={`/products?category=${product.category}`}
-          className="text-[14px] text-[#00000099] font-satoshi font-normal text-nowrap xl:text-[16px]"
+          className="text-[14px] text-[#00000099] font-satoshi  text-nowrap xl:text-[16px]"
         >
           {category}
         </Link>
-        <FaAngleRight color="#00000099" size={14} className="xl:size-4" />
-        <p className="text-[14px] text-black font-satoshi font-normal text-nowrap xl:text-[16px]">
+        <FaAngleRight color="#00000099" size={14} />
+        <p className="text-[14px] text-black font-satoshi  text-nowrap xl:text-[16px]">
           {product.title}
         </p>
       </div>

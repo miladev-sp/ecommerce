@@ -58,26 +58,30 @@ export default function HeroSection() {
           src={hero}
           alt="2 models with sweatsherts "
           priority
+          fetchPriority="high"
           className="min-[1376px]:hidden  w-full h-auto  "
         />
         <Image
           src={heroIcon}
           className="absolute right-5 sm:right-24 md:right-8.75 md:top-10 lg:top-23.25 lg:right-20 lg:w-26 lg:h-26 z-40"
-          alt=""
+          alt="2 models with sweatsherts"
           priority
+          fetchPriority="high"
         />
         <Image
           src={heroIcon2}
           className="absolute left-6.75 top-35 sm:left-24 md:left-10 lg:top-82.25 lg:left-10.5 lg:w-[56px]lg:h-[56px] z-40"
-          alt=""
+          alt="2 models with sweatsherts"
           priority
+          fetchPriority="high"
         />
       </div>
       <Image
         src={hero2}
-        alt=""
+        alt="2 models with sweatsherts"
         className="absolute   h-full w-full hidden  min-[1376px]:block"
         priority
+        fetchPriority="high"
       />
     </div>
   );
