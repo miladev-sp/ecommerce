@@ -10,12 +10,12 @@ export default async function ProductListSorted({ limit, query }: Props) {
   return (
     <>
       <div className="flex gap-5 overflow-x-auto mt-15  mx-6 items-stretch xl:justify-center hide-scrollbar">
-        {products.products.map((product: Product) => (
+        {products.products.map((product: Product, index: number) => (
           <div
             className=" w-[clamp(11rem,25vw,20rem)] shrink-0"
             key={product.id}
           >
-            <ProductCard product={product} />
+            <ProductCard product={product} index={index} />
           </div>
         ))}
       </div>

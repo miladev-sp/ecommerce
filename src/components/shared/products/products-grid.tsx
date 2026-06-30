@@ -10,9 +10,9 @@ export default function ProductGrid({ product }: Props) {
   return (
     <>
       <div className="grid grid-cols-2 gap-y-7 gap-x-4 min-[1211px]:grid-cols-3 ">
-        {product.products.map((product: Product) => (
+        {product.products.map((product: Product, index) => (
           <div className=" w-full shrink-0" key={product.id}>
-            <ProductCard product={product} />
+            <ProductCard product={product} index={index} />
           </div>
         ))}
       </div>

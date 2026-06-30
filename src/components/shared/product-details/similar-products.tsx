@@ -18,12 +18,12 @@ export default async function SimilarProducts({ category, products }: Props) {
       </h2>
 
       <div className="flex gap-5  mt-15 overflow-x-auto  items-stretch sm:justify-center hide-scrollbar">
-        {productsFiltered.map((product: Product) => (
+        {productsFiltered.map((product: Product, index) => (
           <div
             className=" w-[clamp(11rem,25vw,20rem)] shrink-0"
             key={product.id}
           >
-            <ProductCard product={product} />
+            <ProductCard product={product} index={index} />
           </div>
         ))}
       </div>

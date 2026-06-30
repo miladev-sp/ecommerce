@@ -8,8 +8,9 @@ import {
 } from "@/src/lib/utils";
 type Props = {
   product: Product;
+  index: number;
 };
-export default function ProductCard({ product }: Props) {
+export default function ProductCard({ product, index }: Props) {
   const discountAmount = calculateDiscountAmount(
     product.price,
     product.discountPercentage,
@@ -25,7 +26,16 @@ export default function ProductCard({ product }: Props) {
     <Link href={`/products/${product.id}`}>
       <div className="flex flex-col h-full gap-1">
         <div className="bg-[#F0EEED] p-3 rounded-[13px] flex items-center justify-center ">
-          <Image src={product.thumbnail} alt="" width={295} height={295} />
+          <Image
+            src={product.thumbnail}
+            alt={product.title}
+            width={295}
+            height={295}
+            sizes="(max-width:768px) 45vw, 295px"
+            fetchPriority={
+              index === 0 || index === 1 || index === 2 ? "high" : "auto"
+            }
+          />
         </div>
         <p className="mt-2.5 font-satoshi font-bold text-[16px] line-clamp-2 min-h-12 lg:text-[20px] ">
           {product.title}
