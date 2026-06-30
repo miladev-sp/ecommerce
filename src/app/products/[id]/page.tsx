@@ -7,11 +7,10 @@ import SimilarProducts from "@/src/components/shared/product-details/similar-pro
 import DetailsSelector from "@/src/components/shared/product-details/product-details-selector";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { Suspense } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
 type Props = {
   params: Promise<{ id: string }>;
 };
+export const revalidate = 3600;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = (await params).id;
 
