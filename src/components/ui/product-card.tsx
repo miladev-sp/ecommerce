@@ -13,7 +13,7 @@ type Props = {
 };
 
 const BLUR_DATA_URL =
-  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=";
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP48O4tAAWdAszZPkQHAAAAAElFTkSuQmCC";
 
 export default function ProductCard({ product, index }: Props) {
   const discountAmount = calculateDiscountAmount(
