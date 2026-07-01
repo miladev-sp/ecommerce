@@ -24,10 +24,10 @@ export default function CartPage() {
           </Link>
           <FaAngleRight color="#00000099" size={14} className="xl:size-4" />
           <Link
-            href={"/products"}
+            href={"/cart"}
             className="text-[14px] text-[#00000099] font-satoshi font-normal lg:text-[16px]"
           >
-            Shop
+            Cart
           </Link>
         </div>
       </div>

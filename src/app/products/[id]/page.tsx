@@ -1,4 +1,4 @@
-import { getProductById } from "@/src/lib/api/dummyjson";
+import { getProductById, getProducts } from "@/src/lib/api/dummyjson";
 import BreadCrumb from "@/src/components/shared/product-details/breadcrumb";
 import ImageGallery from "@/src/components/shared/product-details/product-image-gallery";
 import ProductInfo from "@/src/components/shared/product-details/product-info";
@@ -7,6 +7,7 @@ import SimilarProducts from "@/src/components/shared/product-details/similar-pro
 import DetailsSelector from "@/src/components/shared/product-details/product-details-selector";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { Product } from "@/src/types";
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -36,6 +37,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
+
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products.products.map((product: Product) => ({
+    id: product.id.toString(),
+  }));
+}
+
 export const revalidate = 3600;
 
 export default async function ProductDetailPage({ params }: Props) {
