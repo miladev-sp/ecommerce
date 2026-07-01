@@ -33,7 +33,14 @@ export default function ProductCard({ product, index }: Props) {
             height={295}
             sizes="(max-width:768px) 45vw, 295px"
             fetchPriority={
-              index === 0 || index === 1 || index === 2 ? "high" : "auto"
+              index === 0 ||
+              index === 1 ||
+              index === 2 ||
+              index === 3 ||
+              index === 4 ||
+              index === 5
+                ? "high"
+                : "low"
             }
           />
         </div>

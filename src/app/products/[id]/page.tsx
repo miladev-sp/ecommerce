@@ -10,7 +10,6 @@ import { Metadata } from "next";
 type Props = {
   params: Promise<{ id: string }>;
 };
-export const revalidate = 3600;
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = (await params).id;
 
@@ -37,6 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   };
 }
+export const revalidate = 3600;
 
 export default async function ProductDetailPage({ params }: Props) {
   const id = (await params).id;
